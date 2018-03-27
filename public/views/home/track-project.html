@@ -1,0 +1,110 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Set up Tracking configuration for new project</h4>
+            <hr/>
+        </div>
+    </div>
+
+    <div class = "row">
+        <div class="col-md-12">
+            <h4>Add a Notification</h4>
+            <form ng-submit="vm.submit()" name="vm.form">
+
+                <div class="form-row">
+                    <div class="col">
+                        <label for="project-selection">
+                            Select project..
+                        </label>
+                        <select class="form-control" id="project-selection" ng-model="vm.data.projectID" required>
+                            <option></option>
+                            <option ng-repeat="project in vm.projects" ng-value="project.id">
+                                {{project.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="budget">
+                            Input budget for this project
+                        </label>
+                        <input required type="text" class="form-control" placeholder="Total Budget (Hours)" id="budget" ng-model="vm.data.budget">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="percentage">
+                        Select percentage of tracked hours to notify at..
+                    </label>
+                    <select required class="form-control" id="percentage" ng-model="vm.data.percentage">
+                        <option></option>
+                        <option value="50">50%</option>
+                        <option value="100">100%</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email addresses</label>
+                    <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email or emails" ng-model="vm.data.emails">
+                    <small id="emailHelp" class="form-text text-muted">Separated by commas. ie: ernesto@geekbears, ivan@geekbears, marcos@geekbears.com</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-disabled="vm.form.$invalid">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr/>
+            <h4>Notifications</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Project</th>
+                        <th scope="col">Total Budget (Hours)</th>
+                        <th scope="col">50% or 100%</th>
+                        <th scope="col">Emails</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat = "notification in vm.notifications">
+                        <th scope="row">{{notification.projectName}}</th>
+                        <td>{{notification.budget}}</td>
+                        <td>{{notification.percentage}}</td>
+                        <td>
+                            <b ng-repeat="email in notification.emails">{{email}}<br/></b>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr/>
+            <h4>History</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Project</th>
+                    <th scope="col">50% or 100%</th>
+                    <th scope="col">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Geekbears</th>
+                    <td>100%</td>
+                    <td>23/05/2018</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
